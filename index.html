@@ -16,19 +16,45 @@
 
         var geometry = new three.BoxGeometry(5, 5, 5);
         var material = new three.MeshBasicMaterial();
-        var cube = new three.Mesh(geometry, material);
-        scene.add(cube);
+        var cube1 = new three.Mesh(geometry, material);
+        var cube2 = new three.Mesh(geometry, material);
+        var mainCubes = [];
+        mainCubes.push(cube1);
+        mainCubes.push(cube2);
+        scene.add(cube1);
+        scene.add(cube2);
         camera.position.z = 10;
-        cube.rotation.x = 10;
-        cube.rotation.y = 10;
+        cube1.translateZ(-100);
+        cube1.translateX(-120);
+        cube1.translateY(-60);
+        cube2.translateZ(-100);
+        cube2.translateX(120);
+        cube2.translateY(-60);
 
+        //mainCubes[0].onClick = function () {
+        //    var mousePosition = new three.Vector2();
+
+        //}
+     
+        
+        
         function update() {
             requestAnimationFrame(update);
+            cube1.rotation.x += 0.1;
+            cube1.rotation.y += 0.1;
+            cube2.rotation.x += 0.1;
+            cube2.rotation.y += 0.1;
             renderer.render(scene, camera);
         }
 
         update();
 
+        var boxes = [];
+        function createBox() {
+            var box = new three.Mesh(geometry, material);
+            boxes.push(box);
+            scene.add(box);
+        }
 
     </script>
 </body>
